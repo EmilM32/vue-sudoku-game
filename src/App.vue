@@ -1,21 +1,27 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import { useDark, useToggle } from '@vueuse/core'
 
 const { t } = useI18n()
-// import { RouterLink, RouterView } from 'vue-router'
-// import HelloWorld from './components/HelloWorld.vue'
+
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
 </script>
 
 <template>
-  <header>{{ t('message.hello') }}</header>
-  <!--    <div class="wrapper">-->
-  <!--      <HelloWorld msg="You did it!" />-->
+  <header class="dark:text-gray-100">
+    {{ t('message.hello') }}
+  </header>
+  <button @click="toggleDark()">toggle dark</button>
 
-  <!--      <nav>-->
-  <!--        <RouterLink to="/">Home</RouterLink>-->
-  <!--        <RouterLink to="/about">About</RouterLink>-->
-  <!--      </nav>-->
-  <!--    </div>-->
-  <!--  </header>-->
   <RouterView />
 </template>
+
+<style lang="postcss">
+body {
+  @apply bg-gray-100;
+  @apply dark:bg-gray-800;
+  @apply text-black;
+  @apply dark:text-white;
+}
+</style>
