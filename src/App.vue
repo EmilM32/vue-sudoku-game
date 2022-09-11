@@ -13,6 +13,7 @@ const toggleDark = useToggle(isDark)
     {{ t('message.hello') }}
   </header>
   <button @click="toggleDark()">toggle dark</button>
+  <span class="mdi mdi-account-circle text-4xl"></span>
 
   <RouterView />
 </template>
