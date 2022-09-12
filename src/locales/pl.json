@@ -1,5 +1,13 @@
 {
-  "message": {
-    "hello": "Witaj"
+  "app": {
+    "title": "Sudoku"
+  },
+  "game": {
+    "chooseLevel": "Wybierz poziom",
+    "levels": {
+      "easy": "łatwy",
+      "normal": "normalny",
+      "hard": "trudny"
+    }
   }
 }

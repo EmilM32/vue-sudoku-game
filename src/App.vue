@@ -1,19 +1,20 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { useDark, useToggle } from '@vueuse/core'
+import BaseThemeMode from '@/components/BaseThemeMode.vue'
 
 const { t } = useI18n()
-
-const isDark = useDark()
-const toggleDark = useToggle(isDark)
 </script>
 
 <template>
-  <header class="dark:text-gray-100">
-    {{ t('message.hello') }}
+  <header class="flex">
+    <div class="flex-none w-10 h-10"></div>
+    <span
+      class="grow flex items-center justify-center text-2xl font-bold"
+    >
+      {{ t('app.title') }}
+    </span>
+    <BaseThemeMode />
   </header>
-  <button @click="toggleDark()">toggle dark</button>
-  <span class="mdi mdi-account-circle text-4xl"></span>
 
   <RouterView />
 </template>
@@ -22,7 +23,7 @@ const toggleDark = useToggle(isDark)
 body {
   @apply bg-gray-100;
   @apply dark:bg-gray-800;
-  @apply text-black;
+  @apply text-slate-800;
   @apply dark:text-white;
 }
 </style>
