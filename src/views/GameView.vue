@@ -2,6 +2,7 @@
 import { isLevelCorrect } from '@/utils'
 import { useRoute } from 'vue-router'
 import { useRouter } from 'vue-router'
+import SingleBlock from '@/components/board/SingleBlock.vue'
 
 const { params } = useRoute()
 const { push } = useRouter()
@@ -9,4 +10,6 @@ const { push } = useRouter()
 if (!isLevelCorrect(params.id as string)) push({ name: 'home' })
 </script>
 
-<template>{{ params.id }}</template>
+<template>
+  <SingleBlock class="m-7" />
+</template>
