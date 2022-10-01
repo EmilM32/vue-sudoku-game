@@ -2,7 +2,7 @@
 import { isLevelCorrect } from '@/utils'
 import { useRoute } from 'vue-router'
 import { useRouter } from 'vue-router'
-import SingleBlock from '@/components/board/SingleBlock.vue'
+import GameBoard from '@/components/board/GameBoard.vue'
 
 const { params } = useRoute()
 const { push } = useRouter()
@@ -11,5 +11,5 @@ if (!isLevelCorrect(params.id as string)) push({ name: 'home' })
 </script>
 
 <template>
-  <SingleBlock class="m-7" />
+  <GameBoard class="m-7" />
 </template>

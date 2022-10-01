@@ -21,7 +21,7 @@ watch(inputValue, (newValue) => {
   <input
     type="number"
     v-model.number="inputValue"
-    class="w-14 h-14 appearance-none outline-none p-4 border text-center caret-transparent text-3xl dark:bg-slate-700 dark:border-slate-900"
+    class="w-10 h-10 md:w-14 md:h-14 appearance-none outline-none p-4 border text-center caret-transparent text-3xl dark:bg-slate-700 dark:border-slate-900 focus:bg-amber-400 dark:focus:bg-lime-800"
   />
 </template>
 
