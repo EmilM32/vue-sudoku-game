@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import SingleBlock from '@/components/board/SingleBlock.vue'
+import { ref } from 'vue'
 
 const getBorderRightIndex = () => {
   const result: number[] = []
@@ -21,6 +22,14 @@ const getBorderBottomIndex = () => {
   return result
 }
 const borderBottomIndex = getBorderBottomIndex()
+
+const activeBlockIndex = ref(0)
+
+const setBlocksColor = (activeBlock: number) => {
+  activeBlockIndex.value = activeBlock
+
+  // TODO add logic to color subactive blocks
+}
 </script>
 
 <template>
@@ -29,11 +38,13 @@ const borderBottomIndex = getBorderBottomIndex()
   >
     <SingleBlock
       v-for="i in 9 * 9"
-      :key="i"
+      :key="`block-${i}`"
       :class="{
         'border-r-2 border-r-black': borderRightIndex.includes(i),
         'border-b-2 border-b-black': borderBottomIndex.includes(i),
+        'bg-amber-400 dark:bg-lime-800': activeBlockIndex === i,
       }"
+      @click="setBlocksColor(i)"
     />
   </div>
 </template>
