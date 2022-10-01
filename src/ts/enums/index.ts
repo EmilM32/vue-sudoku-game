@@ -1,5 +1,5 @@
 export enum LevelID {
-  EASY = 'EASY',
-  NORMAL = 'NORMAL',
-  HARD = 'HARD',
+  EASY = 'easy',
+  NORMAL = 'normal',
+  HARD = 'hard',
 }

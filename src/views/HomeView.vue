@@ -3,8 +3,10 @@ import { useI18n } from 'vue-i18n'
 import { LevelID } from '@/ts/enums'
 import BaseButton from '@/components/BaseButton.vue'
 import type { Level } from '@/ts/interfaces'
+import { useRouter } from 'vue-router'
 
 const { t } = useI18n()
+const { push } = useRouter()
 
 const availableLevels: Level[] = [
   {
@@ -22,7 +24,7 @@ const availableLevels: Level[] = [
 ]
 
 const startGame = (levelId: LevelID) => {
-  console.log(levelId)
+  push({ name: 'game', params: { id: levelId } })
 }
 </script>
 
