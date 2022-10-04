@@ -2,41 +2,46 @@
 import SingleBlock from '@/components/board/SingleBlock.vue'
 import { ref } from 'vue'
 
-const columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
-const rows = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+const columnsSections = [
+  ['A', 'B', 'C'],
+  ['D', 'E', 'F'],
+  ['G', 'H', 'I'],
+]
+
+const rowsSections = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+]
+
+const columns = columnsSections.flat()
+const rows = rowsSections.flat()
 
 const activeBlockId = ref('')
-
 const relatedBlocks = ref<string[]>([])
 
 const getBlockSections = () => {
-  const rows = [
-    ['A', 'B', 'C'],
-    ['D', 'E', 'F'],
-    ['G', 'H', 'I'],
-  ]
-
-  const cols = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
-  ]
-
   const sections = new Map<string, string[]>()
-  sections.set('00', [])
-  sections.set('01', [])
-  sections.set('02', [])
-  sections.set('10', [])
-  sections.set('11', [])
-  sections.set('12', [])
-  sections.set('20', [])
-  sections.set('21', [])
-  sections.set('22', [])
+  const sectionsCoordinates = [
+    '00',
+    '01',
+    '02',
+    '10',
+    '11',
+    '12',
+    '20',
+    '21',
+    '22',
+  ]
+
+  sectionsCoordinates.forEach((key) => {
+    sections.set(key, [])
+  })
 
   sections.forEach((section, key) => {
-    rows[parseInt(key[0])].forEach((row) => {
-      cols[parseInt(key[1])].forEach((col) => {
-        section.push(`${row}${col}`)
+    columnsSections[parseInt(key[0])].forEach((col) => {
+      rowsSections[parseInt(key[1])].forEach((row) => {
+        section.push(`${col}${row}`)
       })
     })
   })
@@ -85,9 +90,9 @@ const setBlocksColor = (activeColumn: string, activeRow: number) => {
           'border-r-2 border-r-black': row === 3 || row === 6,
           'border-b-2 border-b-black':
             column === 'C' || column === 'F',
-          'bg-amber-400 dark:bg-indigo-800':
+          'bg-amber-400 dark:bg-indigo-900':
             activeBlockId === `${column}${row}`,
-          'bg-amber-400/50 dark:bg-indigo-800/50':
+          'bg-amber-400/[.06] dark:bg-indigo-800/[.06]':
             relatedBlocks.includes(`${column}${row}`),
         }"
         @click="setBlocksColor(column, row)"
